@@ -11,10 +11,10 @@ const App = () => {
   const loginBox = <p><span>Log in please</span></p>;
 
   const todoData = [
-    { label: 'Drink Coffee', important: false },
-    { label: 'Have a breakfast', important: true },
-    { label: 'Make a table', important: true },
-    { label: 'Make React App', important: false },
+    { label: 'Drink Coffee', important: false, id: 1 },
+    { label: 'Have a breakfast', important: true, id: 2 },
+    { label: 'Make a table', important: true, id: 3 },
+    { label: 'Make React App', important: false, id: 4 },
   ];
 
   return (
