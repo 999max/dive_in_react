@@ -34,7 +34,8 @@ export default class AddItemForm extends Component {
                  value={this.state.label} />
           
           <button type='button'
-                  className='btn btn-outline-secondary'>
+                  className='btn btn-outline-secondary'
+                  onClick={this.onSubmit}>
             Add Item
           </button>
         </form>
