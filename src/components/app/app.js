@@ -20,6 +20,7 @@ export default class App extends Component {
       this.createTodoItem('See New Movie'),
     ],
     term: '',
+    filterType: '',
   }
 
   createTodoItem(label) {
@@ -105,11 +106,28 @@ export default class App extends Component {
     this.setState({term})
   }
 
+  filter(arr, type) {
+    switch(type) {
+      case 'all':
+        return arr;
+      case 'active':
+        return arr.filter((item) => !item.done);
+      case 'done':
+        return arr.filter((item) => item.done);
+      default:
+        return arr;
+    }
+  }
+
+  onFilter = (filterType) => {
+    this.setState({filterType})
+  }
+
   render() {
 
-    const { todoData, term } = this.state;
+    const { todoData, term, filterType } = this.state;
 
-    const visibleItems = this.search(todoData, term);
+    const visibleItems = this.filter(this.search(todoData, term), filterType);
 
     const doneCount = todoData.filter((el) => el.done).length;
     const todoCount = todoData.length - doneCount;
@@ -119,11 +137,16 @@ export default class App extends Component {
         <span>{ (new Date()).toString() }</span>
 
         <AppHeader toDo ={todoCount} done={doneCount} />
+        
         <div className='top-panel d-flex'>
           <SearchPanel 
           onSearch={ this.onSearchChange } />
-          <ItemStatusFilter />
+          
+          <ItemStatusFilter 
+          filter = { filterType }
+          onFilterChange={ this.onFilter }/>
         </div>
+        
         <TodoList 
           todos={visibleItems}
           onDeleted={ this.deleteItem } 

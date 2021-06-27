@@ -13,8 +13,6 @@ export default class SearchPanel extends Component {
         const term = event.target.value;
         this.setState({ term })
         this.props.onSearch(term)
-        // console.log(this.props)
-        // console.log(event.target.value)
     }
 
     render() {
@@ -27,5 +25,3 @@ export default class SearchPanel extends Component {
     )
     }
 };
-
-// export default SearchPanel;
